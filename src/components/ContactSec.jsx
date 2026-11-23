@@ -1,110 +1,58 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 
+const contactMethods = [
+  { icon: 'phone', label: 'Call us', value: '+234 913 510 4681', href: 'tel:+2349135104681' },
+  { icon: 'map-marked-alt', label: 'Office', value: 'Umuahia' },
+  { icon: faWhatsapp, label: 'WhatsApp', value: '+234 901 304 1098', href: 'https://wa.me/2349013041098' },
+  { icon: 'globe-africa', label: 'Country', value: 'Nigeria' },
+];
+
 function ContactSec() {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [subject, setSubject] = useState('');
-    const [message, setMessage] = useState('');
-    const [status, setStatus] = useState('');
-    const [isSubmitting, setIsSubmitting] = useState(false);
+  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
+  const [status, setStatus] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        setIsSubmitting(true);
+  const updateField = (event) => setForm((current) => ({ ...current, [event.target.name]: event.target.value }));
 
-        try {
-        const response = await axios.post('https://formspree.io/f/maygrjyl', {
-            name,
-            email,
-            subject,
-            message
-        }, {
-            headers: {
-            'Accept': 'application/json'
-            }
-        });
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setIsSubmitting(true);
+    setStatus('');
 
-        if (response.status === 200) {
-            setStatus('Success! Your message has been sent.');
-            setName('');
-            setEmail('');
-            setSubject('');
-            setMessage('');
-        } else {
-            setStatus('Oops! Something went wrong.');
-        }
-        } catch {
+    try {
+      const response = await axios.post('https://formspree.io/f/maygrjyl', form, { headers: { Accept: 'application/json' } });
+      if (response.status === 200) {
+        setStatus('Success! Your message has been sent.');
+        setForm({ name: '', email: '', subject: '', message: '' });
+      } else {
         setStatus('Oops! Something went wrong.');
-        } finally {
-        setIsSubmitting(false);
-        }
-    };
-  
+      }
+    } catch {
+      setStatus('Oops! Something went wrong.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
-    <div>
-        <section className='px-md-2'>
-            <h1 className='sec-info'>Contact</h1>
-
-            <h3 className="text-custom-color text-center">Have You Any Question?</h3>
-            <h5 className="text-center">I AM AT YOUR SERVICES</h5>
-            <div className="row my-5">
-                <div className="col-md-3 text-center">
-                    <FontAwesomeIcon className='fs-3' icon='phone' />
-                    <h4>Call Us On:</h4>
-                    <p className='fs-5 fw-light'><a href="tel:+2349135104681" className='text-body text-decoration-none'>+234 913 510 4681</a></p>
-                </div>
-                <div className="col-md-3 text-center">
-                    <FontAwesomeIcon className='fs-3' icon='map-marked-alt' />
-                    <h4>Office:</h4>
-                    <p className='fs-5 fw-light'>Umuahia</p>
-                </div>
-                <div className="col-md-3 text-center">
-                    <FontAwesomeIcon className='fs-3' icon={faWhatsapp} />
-                    <h4>WhatsApp:</h4>
-                    <p className='fs-5 fw-light'><a href="http://wa.me/2349013041098" className='text-body text-decoration-none'>+234 901 304 1098</a></p>
-                </div>
-                <div className="col-md-3 text-center">
-                    <FontAwesomeIcon className='fs-3' icon='globe-africa' />
-                    <h4>Country:</h4>
-                    <p className='fs-5 fw-light'>Nigeria</p>
-                </div>
-            </div>
-            <h3 className="text-custom-color text-center">SEND ME A MAIL</h3>
-            <h5 className="text-center mb-5">I AM VERY RESPONSIVE TO MESSAGES</h5>
-
-            <div className="form">
-                <form onSubmit={handleSubmit}>
-                    <div className="contact-flex-box mb-2">
-                        <div className="form-floating mb-2 w-100">
-                            <input type="text" id='name' className='form-control' name="name" autoComplete='name' placeholder='Name' value={name} onChange={(e) => setName(e.target.value)} required />
-                            <label htmlFor="name">Name</label>
-                        </div>
-                        <div className="form-floating w-100">
-                            <input type="email" id="email" className='form-control text-lowercase' name="email" autoComplete="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-                            <label htmlFor="email">Email</label>
-                        </div>
-                    </div>
-                    
-                    <div className="form-floating mb-2">
-                        <input type="text" id="subject" className='form-control' name="subject" placeholder="Subject" value={subject} onChange={(e) => setSubject(e.target.value)} required />
-                        <label htmlFor="subject">Subject</label>
-                    </div>
-                    <div className="form-floating mb-2">
-                        <textarea name="message" id="message" className='form-control h-auto' cols={30} rows={7} placeholder='Message' value={message} onChange={(e) => setMessage(e.target.value)} required></textarea>
-                        <label htmlFor="message">Message</label>
-                    </div>
-                    <button type="submit" className="btn btn-custom-color fs-4" disabled={isSubmitting}>
-                        {isSubmitting ? 'Sending...' : 'Send Message'}
-                    </button>
-                </form>
-                {status && <p className='fs-5'>{status}</p>}
-            </div>
-        </section>
-    </div>
-  )
+    <section>
+      <header className="mb-9"><p className="font-mono text-xs tracking-[.12em] text-muted">LET’S TALK / 04</p><h1 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">Contact</h1></header>
+      <h2 className="text-center text-2xl font-semibold">Have a question?</h2><p className="mt-2 text-center text-sm tracking-wider text-muted">I AM AT YOUR SERVICE</p>
+      <div className="my-10 grid grid-cols-2 gap-4 lg:grid-cols-4">{contactMethods.map(({ icon, label, value, href }) => <div className="rounded-xl border border-line p-4 text-center" key={label}><FontAwesomeIcon className="mb-3 text-xl text-[#789d35]" icon={icon} /><h3 className="font-semibold">{label}</h3>{href ? <a className="mt-2 block break-words text-sm text-muted underline underline-offset-4" href={href}>{value}</a> : <p className="mt-2 text-sm text-muted">{value}</p>}</div>)}</div>
+      <div className="mx-auto max-w-2xl"><h2 className="text-center text-xl font-semibold">Send me a message</h2><p className="mb-7 mt-2 text-center text-sm text-muted">I&apos;m very responsive to messages.</p>
+        <form className="space-y-4" onSubmit={handleSubmit}>
+          <div className="grid gap-4 sm:grid-cols-2"><label className="block text-sm font-medium">Name<input className="mt-2 w-full rounded-md border border-line bg-transparent px-3 py-3 font-normal outline-none focus:border-[#789d35]" type="text" name="name" autoComplete="name" value={form.name} onChange={updateField} required /></label><label className="block text-sm font-medium">Email<input className="mt-2 w-full rounded-md border border-line bg-transparent px-3 py-3 font-normal outline-none focus:border-[#789d35]" type="email" name="email" autoComplete="email" value={form.email} onChange={updateField} required /></label></div>
+          <label className="block text-sm font-medium">Subject<input className="mt-2 w-full rounded-md border border-line bg-transparent px-3 py-3 font-normal outline-none focus:border-[#789d35]" type="text" name="subject" value={form.subject} onChange={updateField} required /></label>
+          <label className="block text-sm font-medium">Message<textarea className="mt-2 w-full resize-y rounded-md border border-line bg-transparent px-3 py-3 font-normal outline-none focus:border-[#789d35]" name="message" rows={7} value={form.message} onChange={updateField} required /></label>
+          <button className="rounded-md bg-accent px-5 py-3 font-semibold text-ink transition-colors hover:bg-accent-strong disabled:cursor-wait disabled:opacity-60" type="submit" disabled={isSubmitting}>{isSubmitting ? 'Sending…' : 'Send message'}</button>
+        </form>
+        {status && <p className="mt-4 text-sm" role="status" aria-live="polite">{status}</p>}
+      </div>
+    </section>
+  );
 }
 
 export default ContactSec;

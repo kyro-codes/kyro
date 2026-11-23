@@ -1,126 +1,31 @@
-import React from 'react';
 import bemsnest from '../assets/img/bemsnest.png';
 import affLanding from '../assets/img/aff_landing.png';
 import affDashboard from '../assets/img/aff_dashboard.png';
 import dashboard247 from '../assets/img/247_dashboard.png';
 import suntienergy from '../assets/img/suntienergy.png';
-import Landing247 from '../assets/img/247_landing.png';
-import enviableLogisticsImg from '../assets/img/enviablelogistics.png';
-import enviableLandingImg from '../assets/img/enviablelogistics_landing.png';
-import enviableFlowImg from '../assets/img/enviableflow.png';
+import landing247 from '../assets/img/247_landing.png';
+import enviableLogistics from '../assets/img/enviablelogistics.png';
+import enviableLanding from '../assets/img/enviablelogistics_landing.png';
+import enviableFlow from '../assets/img/enviableflow.png';
 
-function PortfolioSec(props) {
+const projects = [
+  { name: 'BemsNest – Property / Rental Management System', image: bemsnest, url: 'https://bemsnest.com', alt: 'BemsNest property management platform' },
+  { name: 'AFF Landport – Real Estate Marketing Website', image: affLanding, url: 'https://www.afflandportglobalestateltd.com/', alt: 'AFF Landport real estate website' },
+  { name: 'Enviable Logistics – Admin Dashboard / Operations Platform', image: enviableLogistics, url: 'https://admin.enviablelogistics.com', alt: 'Enviable Logistics admin dashboard' },
+  { name: 'AFF Landport – Property Management Dashboard', image: affDashboard, url: 'https://app.afflandportglobalestateltd.com/', alt: 'AFF Landport management dashboard' },
+  { name: '247 Security – Internal Dashboard for Security Ops', image: dashboard247, url: 'https://app.247securityandforensic.com/', alt: '247 Security operations dashboard' },
+  { name: 'Enviable Logistics – Public Website / Branding', image: enviableLanding, url: 'https://enviablelogistics.com', alt: 'Enviable Logistics public website' },
+  { name: 'SuntiSolar Energy Africa Ltd – Renewable Energy Solutions', image: suntienergy, url: 'https://suntienergy.com', alt: 'SuntiSolar Energy Africa website' },
+  { name: '247 Security – Public Landing & Services Page', image: landing247, url: 'https://247securityandforensic.com', alt: '247 Security landing page' },
+  { name: 'Enviable Flow – Hire-Purchase / Vehicle Asset Management', image: enviableFlow, url: 'https://www.enviableflow.com', alt: 'Enviable Flow vehicle asset platform' },
+];
+
+function PortfolioSec() {
   return (
-    <div>
-      <section className={'px-md-2 ' + props.borderBottom}>
-        <h1 className='sec-info'>Portfolio</h1>
-        <h3 className='text-center mb-4'>My Past Projects:</h3>
-
-        <div className="row">
-          {/* Column 1 */}
-          <div className="col-md-4">
-            <div className="mb-3">
-              <a href="https://bemsnest.com" target="_blank" rel="noopener noreferrer">
-                <img
-                  src={bemsnest}
-                  alt="BemsNest Property Management Platform"
-                  className='past-project w-100 border-5 border rounded'
-                />
-              </a>
-              <p className="text-center mt-2">BemsNest – Property / Rental Management System</p>
-            </div>
-            <div className="mb-3">
-              <a href="https://www.afflandportglobalestateltd.com/" target="_blank" rel="noopener noreferrer">
-                <img
-                  src={affLanding}
-                  alt="AFF Landport Global Estates Website"
-                  className='past-project w-100 border-5 border rounded'
-                />
-              </a>
-              <p className="text-center mt-2">AFF Landport – Real Estate Marketing Website</p>
-            </div>
-            <div className="mb-3">
-              <a href="https://admin.enviablelogistics.com" target="_blank" rel="noopener noreferrer">
-                <img
-                  src={enviableLogisticsImg}
-                  alt="Enviable Logistics Admin Dashboard"
-                  className='past-project w-100 border-5 border rounded'
-                />
-              </a>
-              <p className="text-center mt-2">Enviable Logistics – Admin Dashboard / Operations Platform</p>
-            </div>
-          </div>
-
-          {/* Column 2 */}
-          <div className="col-md-4">
-            <div className="mb-3">
-              <a href="https://app.afflandportglobalestateltd.com/" target="_blank" rel="noopener noreferrer">
-                <img
-                  src={affDashboard}
-                  alt="AFF Landport Dashboard"
-                  className='past-project w-100 border-5 border rounded'
-                />
-              </a>
-              <p className="text-center mt-2">AFF Landport – Property Management Dashboard</p>
-            </div>
-            <div className="mb-3">
-              <a href="https://app.247securityandforensic.com/" target="_blank" rel="noopener noreferrer">
-                <img
-                  src={dashboard247}
-                  alt="247 Security & Forensic Dashboard"
-                  className='past-project w-100 border-5 border rounded'
-                />
-              </a>
-              <p className="text-center mt-2">247 Security – Internal Dashboard for Security Ops</p>
-            </div>
-            <div className="mb-3">
-              <a href="https://enviablelogistics.com" target="_blank" rel="noopener noreferrer">
-                <img
-                  src={enviableLandingImg}
-                  alt="Enviable Logistics Public Website"
-                  className='past-project w-100 border-5 border rounded'
-                />
-              </a>
-              <p className="text-center mt-2">Enviable Logistics – Public Website / Branding</p>
-            </div>
-          </div>
-
-          {/* Column 3 */}
-          <div className="col-md-4">
-            <div className="mb-3">
-              <a href="https://suntienergy.com" target="_blank" rel="noopener noreferrer">
-                <img
-                  src={suntienergy}
-                  alt="SuntiSolar Energy Africa"
-                  className='past-project w-100 border-5 border rounded'
-                />
-              </a>
-              <p className="text-center mt-2">SuntiSolar Energy Africa Ltd – Renewable Energy Solutions</p>
-            </div>
-            <div className="mb-3">
-              <a href="https://247securityandforensic.com" target="_blank" rel="noopener noreferrer">
-                <img
-                  src={Landing247}
-                  alt="247 Security Landing Page"
-                  className='past-project w-100 border-5 border rounded'
-                />
-              </a>
-              <p className="text-center mt-2">247 Security – Public Landing & Services Page</p>
-            </div>
-            <div className="mb-3">
-              <a href="https://www.enviableflow.com" target="_blank" rel="noopener noreferrer">
-                <img
-                  src={enviableFlowImg}
-                  alt="Enviable Flow Vehicle Asset Platform"
-                  className='past-project w-100 border-5 border rounded'
-                />
-              </a>
-              <p className="text-center mt-2">Enviable Flow – Hire-Purchase / Vehicle Asset Management</p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
+    <section>
+      <header className="mb-8"><p className="font-mono text-xs tracking-[.12em] text-muted">SELECTED WORK / 03</p><h1 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">Portfolio</h1><p className="mt-4 text-muted">A selection of products and platforms built for real teams.</p></header>
+      <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">{projects.map(({ name, image, url, alt }) => <article className="overflow-hidden rounded-xl border border-line" key={name}><a className="block overflow-hidden bg-line" href={url} target="_blank" rel="noreferrer"><img className="aspect-[1.4] w-full object-cover transition-transform duration-300 hover:scale-[1.03]" src={image} alt={alt} loading="lazy" /></a><h2 className="p-4 text-sm font-medium leading-6">{name}</h2></article>)}</div>
+    </section>
   );
 }
 

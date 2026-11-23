@@ -1,15 +1,9 @@
-import React from 'react'
-
 function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
-    <div>
-        <div className="text-center my-3">
-            <p>Copyright &copy; {currentYear} Kyro All Rights Reserved.</p>
-        </div>
-    </div>
-  )
+    <footer className="border-t border-line px-5 py-5 text-center text-xs text-muted sm:px-8">
+      <p>Copyright © {new Date().getFullYear()} Kyro. All rights reserved.</p>
+    </footer>
+  );
 }
 
 export default Footer;
