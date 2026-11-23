@@ -36,7 +36,7 @@ function ContactSec() {
         } else {
             setStatus('Oops! Something went wrong.');
         }
-        } catch (error) {
+        } catch {
         setStatus('Oops! Something went wrong.');
         } finally {
         setIsSubmitting(false);
