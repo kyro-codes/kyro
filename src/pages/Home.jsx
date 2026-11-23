@@ -1,117 +1,87 @@
-import React, { useState } from 'react';
-import Nav from '../components/Nav';
+import React from 'react';
+import bemsnest from '../assets/img/bemsnest.png';
+import affDashboard from '../assets/img/aff_dashboard.png';
+import dashboard247 from '../assets/img/247_dashboard.png';
+import enviableFlow from '../assets/img/enviableflow.png';
 import profileImg from '../assets/img/portfolio_dp.jpg';
-import AboutSec from '../components/AboutSec';
-import ServicesSec from '../components/ServicesSec';
-import PortfolioSec from '../components/PortfolioSec';
-import ContactSec from '../components/ContactSec';
-import Footer from '../components/Footer';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
-import { Typewriter } from 'react-simple-typewriter';
+import resume from '../assets/img/Resume.pdf';
+
+const projects = [
+  { number: '01', name: 'BemsNest', type: 'Property operations platform', image: bemsnest, url: 'https://bemsnest.com', tags: ['Product engineering', 'Property tech'] },
+  { number: '02', name: 'AFF Landport', type: 'Real estate management suite', image: affDashboard, url: 'https://app.afflandportglobalestateltd.com/', tags: ['Full-stack', 'Operations'] },
+  { number: '03', name: '247 Security', type: 'Security operations dashboard', image: dashboard247, url: 'https://app.247securityandforensic.com/', tags: ['Dashboard', 'Workflow design'] },
+  { number: '04', name: 'Enviable Flow', type: 'Vehicle asset management', image: enviableFlow, url: 'https://www.enviableflow.com', tags: ['SaaS', 'Fintech'] },
+];
+
+const skills = ['React', 'JavaScript', 'Node.js', 'REST APIs', 'Project delivery', 'Product thinking', 'Responsive UI', 'Team leadership'];
 
 function Home() {
-  const [left, setLeft] = useState('-100%');
-
-  const handleOpen = () => {
-    setLeft('0');
-  };
-
-  const handleClose = () => {
-    setLeft('-100%');
-  };
-
   return (
-    <div>
-      <div className="bg-color container-fluid">
-        <div className="row">
-          <div
-            className="bg-sec nav-container col-md-3 vh-100 z-3"
-            style={{ left: left }}
-          >
-            <Nav homeActive="btn-custom-color active" closeNav={handleClose} />
-          </div>
+    <main className="portfolio-shell">
+      <header className="portfolio-header">
+        <a className="wordmark" href="#top" aria-label="Kyro, back to top">K<span>.</span></a>
+        <nav className="top-nav" aria-label="Main navigation">
+          <a href="#work">Selected work</a><a href="#about">About</a><a href="#contact">Contact</a>
+        </nav>
+        <a className="availability" href="#contact"><span /> Available for projects</a>
+      </header>
 
-          <div className="bg-sec col-md-9 vh-100 overflow-auto">
-            <div className="bg-sec w-100 border-bottom d-block d-md-none position-sticky top-0 p-2 z-2">
-              <button className="btn border fs-4" onClick={handleOpen}>
-                <FontAwesomeIcon icon="bars" />
-              </button>
-            </div>
-
-            <section className="px-md-2 d-flex justify-content-center border-bottom">
-              <div className="row align-items-center">
-                <div className="col-md-6">
-                  <h2>
-                    Hello, my name is{' '}
-                    <span className="text-custom-color fw-bold fs-1 amita-font">
-                      Tochukwu Elekwachi
-                    </span>
-                  </h2>
-
-                  <h4 className="text-muted mt-2">
-                    Software Developer • Project Manager
-                  </h4>
-
-                  <div className="text-custom-color fs-3 mt-2">
-                    <Typewriter
-                      words={[
-                        'Welcome to my site!',
-                        "I'm a Software Developer",
-                        "I'm a Project Manager",
-                        'I build & deliver scalable products',
-                      ]}
-                      loop={0}
-                      cursor
-                      cursorStyle="_"
-                      typeSpeed={70}
-                      deleteSpeed={50}
-                      delaySpeed={1000}
-                    />
-                  </div>
-
-                  <p className="fs-5 mt-3">
-                    Welcome! I’m a Software Developer and Project Manager with a
-                    strong focus on building scalable, efficient, and
-                    user-friendly applications while ensuring projects are
-                    delivered on time and aligned with business goals. I combine
-                    hands-on development experience with project planning,
-                    coordination, and team collaboration to turn ideas into
-                    reliable digital products. I enjoy solving complex problems,
-                    leading execution, and delivering real value—let’s connect!
-                  </p>
-
-                  <div className="d-flex gap-2 mb-3">
-                    <Link to="/contact" className="btn btn-custom-color fs-4">
-                      Let’s Work Together
-                    </Link>
-                    <Link to="/portfolio" className="btn btn-custom-color fs-4">
-                      Portfolio
-                    </Link>
-                  </div>
-                </div>
-
-                <div className="col-md-6 text-center">
-                  <div className="portfolio-img-container position-relative p-2 rounded">
-                    <img
-                      src={profileImg}
-                      alt="Tochukwu Elekwachi"
-                      className="w-100 rounded-circle shadow-lg"
-                    />
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            <AboutSec borderBottom="border-bottom" />
-            <ServicesSec borderBottom="border-bottom" />
-            <PortfolioSec borderBottom="border-bottom" />
-            <ContactSec />
-            <Footer />
+      <section className="hero" id="top">
+        <div className="hero-copy">
+          <p className="eyebrow"><span className="eyebrow-line" /> SOFTWARE ENGINEER & PRODUCT BUILDER</p>
+          <h1>I build digital<br />products that <em>work</em><br />for people.</h1>
+          <div className="hero-bottom">
+            <p className="hero-intro">I&apos;m Tochukwu Elekwachi — a software developer and project lead turning ambitious ideas into thoughtful, reliable experiences.</p>
+            <a className="text-link" href="#work">Explore selected work <span aria-hidden="true">↘</span></a>
           </div>
         </div>
-      </div>
-    </div>
+        <div className="hero-art" aria-label="Portrait of Tochukwu Elekwachi">
+          <div className="art-index">INDEPENDENT BY DESIGN<br />BUILT TO SHIP</div>
+          <div className="portrait-frame"><img src={profileImg} alt="Tochukwu Elekwachi" /></div>
+          <div className="art-orbit orbit-one" /><div className="art-orbit orbit-two" />
+          <div className="art-caption"><span>TOCHUKWU<br />ELEKWACHI</span><span>NG / WORLDWIDE<br />AVAILABLE REMOTELY</span></div>
+          <span className="art-symbol" aria-hidden="true">K<span>↗</span></span>
+        </div>
+      </section>
+
+      <section className="proof-strip" aria-label="What I bring">
+        <div className="proof-label">A LITTLE ABOUT<br />HOW I WORK</div>
+        <p><strong>Product-minded engineering.</strong> From first sketch to shipped feature, I connect clear thinking with clean execution.</p>
+        <div className="proof-stat"><strong>01</strong><span>Partner, not just a pair of hands</span></div>
+        <div className="proof-stat"><strong>02</strong><span>Built around real outcomes</span></div>
+      </section>
+
+      <section className="work-section" id="work">
+        <div className="section-heading"><div><p className="eyebrow">SELECTED PROJECTS / 2022—26</p><h2>Work with<br /><em>purpose.</em></h2></div><p className="section-aside">A selection of platforms and digital products built to make complex work feel simple.</p></div>
+        <div className="project-grid">
+          {projects.map((project) => (
+            <article className="project-card" key={project.number}>
+              <a className="project-image" href={project.url} target="_blank" rel="noreferrer" aria-label={`Visit ${project.name}`}>
+                <img src={project.image} alt={`${project.name} product interface`} loading="lazy" />
+                <span className="project-arrow" aria-hidden="true">↗</span>
+              </a>
+              <div className="project-meta"><span>{project.number} / CASE STUDY</span><div>{project.tags.map((tag) => <span className="tag" key={tag}>{tag}</span>)}</div></div>
+              <h3>{project.name}</h3><p className="project-type">{project.type}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="about-section" id="about">
+        <div className="about-kicker"><p className="eyebrow">THE PERSON BEHIND THE BUILD</p><span className="about-mark">K<span>.</span></span></div>
+        <div className="about-content"><h2>Good software is<br />a <em>team sport.</em></h2><p>I bring hands-on development and project leadership together to help teams move from vague requirements to dependable releases. I care about the details people feel: clear interfaces, maintainable systems, and work that solves the right problem.</p><p>Whether I&apos;m joining an established engineering team or partnering with a founder, I bring curiosity, ownership, and a bias toward shipping.</p>
+          <div className="skills-wrap" aria-label="Skills and focus areas">{skills.map((skill) => <span className="skill-chip" key={skill}>{skill}</span>)}</div>
+          <a className="resume-link" href={resume} target="_blank" rel="noreferrer">View résumé <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+
+      <section className="contact-section" id="contact">
+        <p className="eyebrow"><span className="eyebrow-line" /> OPEN TO GOOD WORK</p>
+        <div className="contact-main"><h2>Have a good<br />problem? <em>Let&apos;s talk.</em></h2><a className="contact-cta" href="https://wa.me/2349013041098" target="_blank" rel="noreferrer">Start a conversation <span aria-hidden="true">↗</span></a></div>
+        <div className="contact-foot"><span>RECRUITING · CONTRACT · COLLABORATION</span><a href="tel:+2349135104681">+234 913 510 4681</a><span>UMUAHIA, NIGERIA · WORKING WORLDWIDE</span></div>
+      </section>
+      <footer className="portfolio-footer"><a className="wordmark" href="#top">K<span>.</span></a><span>Thoughtful products. Reliable engineering.</span><span>© {new Date().getFullYear()} Tochukwu Elekwachi</span></footer>
+    </main>
   );
 }
 
