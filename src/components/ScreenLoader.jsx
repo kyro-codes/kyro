@@ -1,17 +1,11 @@
-import React from 'react';
-
 function ScreenLoader() {
   return (
-    <div>
-        <div className='vh-100 vw-100 d-flex align-items-center justify-content-center'>
-          <div className="d-flex align-items-center justify-content-center gap-2">
-            <div className="dot"></div>
-            <div className="dot"></div>
-            <div className="dot"></div>
-          </div>
-        </div>
+    <div className="flex min-h-screen items-center justify-center gap-2 bg-canvas" role="status" aria-label="Loading">
+      <span className="size-2 animate-pulse rounded-full bg-accent" />
+      <span className="size-2 animate-pulse rounded-full bg-accent [animation-delay:150ms]" />
+      <span className="size-2 animate-pulse rounded-full bg-accent [animation-delay:300ms]" />
     </div>
-  )
+  );
 }
 
 export default ScreenLoader;

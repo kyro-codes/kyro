@@ -1,66 +1,39 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ThemeToggler from './ThemeToggler';
 
-function Nav(props) {
-  return (
-    <div>
-        <nav>
-            <div className='vh-100 position-relative d-flex flex-column justify-content-center'>
-                <div className='position-absolute top-0 start-0 end-0 fs-2 mt-4'>
-                    <div className="d-flex justify-content-end d-md-none">
-                        <button className='btn btn-close border mb-3 fs-5' onClick={props.closeNav}></button>
-                    </div>
-                    <div className="position-relative text-center">
-                        <a href='/' title="Logo" className='site-logo fs-2 mt-5 text-auto text-decoration-none'>
-                            <span className='amita-font display-5'>K</span>yro
-                        </a>
-                    </div>
-                </div>
-                
-                <ul className="nav nav-pills flex-column border-bottom-0 m-auto">
-                    <li title='Home' className='nav-item'>
-                        <Link to="/" className={'nav-link d-flex gap-2 align-items-center p-1 px-2 text-auto ' + props.homeActive}>
-                            <FontAwesomeIcon icon="home" className='fs-4' />
-                            <span className='fs-4 d-inline'> Home</span>
-                        </Link>
-                    </li>
-                    <li title='About' className='nav-item'>
-                        <Link to="/about" className={'nav-link d-flex gap-2 align-items-center p-1 px-2 text-auto ' + props.aboutActive}>
-                            <FontAwesomeIcon icon="user" className='fs-4' />
-                            <span className='fs-4 d-inline'> About</span>
-                        </Link>
-                    </li>
-                    <li title='Services' className='nav-item'>
-                        <Link to="/services" className={'nav-link d-flex gap-2 align-items-center p-1 px-2 text-auto ' + props.servicesActive}>
-                            <FontAwesomeIcon icon="list" className='fs-4' />
-                            <span className='fs-4 d-inline'> Services</span>
-                        </Link>
-                    </li>
-                    <li title='Portfolio' className='nav-item'>
-                        <Link to="/portfolio" className={'nav-link d-flex gap-2 align-items-center p-1 px-2 text-auto ' + props.portfolioActive}>
-                            <FontAwesomeIcon icon="briefcase" className='fs-4' />
-                            <span className='fs-4 d-inline'> Portfolio</span>
-                        </Link>
-                    </li>
-                    <li title='Contact' className='nav-item'>
-                        <Link to="/contact" className={'nav-link d-flex gap-2 align-items-center p-1 px-2 text-auto ' + props.contactActive}>
-                            <FontAwesomeIcon icon="comments" className='fs-4' />
-                            <span className='fs-4 d-inline'> Contact</span>
-                        </Link>
-                    </li>
-                </ul>
+const links = [
+  { to: '/', label: 'Home', icon: 'home' },
+  { to: '/about', label: 'About', icon: 'user' },
+  { to: '/services', label: 'Services', icon: 'list' },
+  { to: '/portfolio', label: 'Portfolio', icon: 'briefcase' },
+  { to: '/contact', label: 'Contact', icon: 'comments' },
+];
 
-                <div className='d-flex flex-column gap-2 position-absolute bottom-0 start-0 end-0 mb-3'>
-                    <div className="m-auto">
-                        <ThemeToggler />
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </div>
-  )
+function Nav({ closeNav }) {
+  const { pathname } = useLocation();
+
+  return (
+    <nav className="flex h-full flex-col px-5 py-7" aria-label="Main navigation">
+      <div className="flex items-center justify-between">
+        <Link className="text-3xl font-extrabold tracking-tight no-underline" to="/" onClick={closeNav}>K<span className="text-[#789d35]">.</span>yro</Link>
+        <button className="rounded-md border border-line px-2 py-1 text-sm md:hidden" type="button" onClick={closeNav} aria-label="Close navigation">Close</button>
+      </div>
+      <ul className="my-auto flex flex-col gap-2 py-10">
+        {links.map(({ to, label, icon }) => {
+          const isActive = pathname === to;
+          return (
+            <li key={to}>
+              <Link className={`flex items-center gap-3 rounded-md px-3 py-2.5 text-base no-underline transition-colors ${isActive ? 'bg-accent text-ink' : 'text-muted hover:bg-black/5 hover:text-ink dark:hover:bg-white/5'}`} to={to} onClick={closeNav} aria-current={isActive ? 'page' : undefined}>
+                <FontAwesomeIcon icon={icon} className="w-5" /><span>{label}</span>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+      <ThemeToggler />
+    </nav>
+  );
 }
 
 export default Nav;
